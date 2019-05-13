@@ -1,0 +1,17 @@
+Given a binary tree, count number of nodes in it. For example, count of nodes in below tree is 4.
+
+        1
+     /      \
+   10      39
+  /
+5
+Your task is to complete the function getSize() which accepts root node of the tree, and returns the size.
+
+
+# Your task to complete this function
+# function should return size of the binary tree as integer
+def size(node):
+    if node is None :
+        return 0
+    return (size(node.left)+size(node.right)+1)
+    # code here

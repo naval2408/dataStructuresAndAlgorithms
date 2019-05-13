@@ -1,0 +1,36 @@
+Given a binary tree, count leaves in it. For example, there are two leaves in below tree
+
+        1
+     /      \
+   10      39
+  /
+5
+
+Input:
+The task is to complete the method which takes one argument, root of Binary Tree. The struct Node has a data part which stores the data, pointer to left child and pointer to right child.
+There are multiple test cases. For each test case, this method will be called individually.
+
+Output:
+The function should return count of leaves
+
+
+
+
+#User function Template for python3
+'''
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+# your task is to complete this function
+# function should return the count of Leaf node's
+# Note: You required to print a new line after every test case
+def countLeaves(root):
+    if(root is None):
+        return 
+    if(root.right is None and root.left is None):
+        return 1
+    return (countLeaves(root.left) + countLeaves(root.right))
+    # Code here
