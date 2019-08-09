@@ -1,0 +1,53 @@
+Given an unsorted array of size N of positive integers. One number 'A' from set {1, 2, …N} is missing and one number 'B' occurs twice in array. Find these two numbers.
+
+Note: If you find multiple answers then print the Smallest number found. Also, expected solution is O(n) time and constant extra space.
+
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+	    Scanner scan = new Scanner(System.in);
+	    int ntc = scan.nextInt();
+	    int missingNumber=0,repeatingNumber=0;
+	    for(int tc=0;tc<ntc;tc++)
+	    {
+	        int sizeOfArray = scan.nextInt();
+	        int[] inputArray = new int[sizeOfArray];
+	        for(int i =0; i<sizeOfArray;i++)
+	        {
+	            inputArray[i] = scan.nextInt();
+	        }
+	        boolean[] mapArray = new boolean[sizeOfArray];
+	        for(int i=0; i<sizeOfArray;i++)
+	        {
+	            mapArray[i]=false;
+	        }
+	        for(int i=0; i<sizeOfArray;i++)
+	        {
+	            if(!mapArray[inputArray[i]-1])
+	            {
+	                mapArray[inputArray[i]-1]=true;
+	            }
+	            else
+	            {
+	                repeatingNumber = inputArray[i];
+	            }
+	        }
+	        
+	        for(int i =0; i<sizeOfArray;i++)
+	        {
+	            if(!mapArray[i])
+	            {
+	                missingNumber = i+1;
+	                break;
+	            }
+	        }
+	        System.out.println(""+repeatingNumber+" "+missingNumber);
+	    }
+		//code
+	}
+}
