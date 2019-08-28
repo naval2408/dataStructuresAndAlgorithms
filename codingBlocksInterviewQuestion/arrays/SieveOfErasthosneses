@@ -1,0 +1,85 @@
+PRIME VISITS
+PMO gives two random numbers a & b to the Prime Minister. PM Modi wants to visit all countries between a and b (inclusive) , However due to shortage of time he can't visit each and every country , So PM Modi decides to visit only those countries,for which country number has two divisors. So your task is to find number of countries Mr. Modi will visit.
+
+Input Format:
+The first line contains N , no of test cases. The next lines contain two integers a and b denoting the range of country numbers.
+
+Constraints:
+a<=1000000 & b<=1000000. N<=1000
+
+Output Format
+Output contains N lines each containing an answer for the test case.
+
+Sample Input
+2
+1 10
+11 20
+Sample Output
+4
+4
+
+
+
+mport java.util.*;
+import java.lang.Math;
+public class Main {
+    public static void main(String args[]) {
+		Scanner scan = new Scanner(System.in);
+		int testCase = scan.nextInt();
+		for(int tc =0;tc<testCase;tc++)
+		{
+			int lowerBound = scan.nextInt();
+			int upperBound = scan.nextInt();
+			boolean [] isVisited = new boolean[upperBound];
+			List<Integer> primeList = new ArrayList();
+			for(int i = 0; i<upperBound;i++)
+			{
+				if(i==0)
+				{
+					isVisited[i]=true;
+					continue;
+				}
+				isVisited[i]=false;
+			}
+			for(int i = 1; i<=(int)Math.sqrt(upperBound);i++)
+			{
+				if(i==1)
+				{
+					continue;
+				}
+				if(!isVisited[i-1])
+				{
+					for(int j = i+i;j<=upperBound;j=j+i)
+					{
+						isVisited[j-1] = true;
+					}
+				}				
+
+
+			}
+			for(int i = 0; i<upperBound;i++)
+			{
+				if(!isVisited[i])
+				{
+					primeList.add(i+1);
+
+				}
+			}
+			int primeCount=0;
+			for(int i =0;i<primeList.size();i++)
+			{
+				// System.out.println("Traversing prime list and found : "+primeList.get(i));
+				if(primeList.get(i)>=lowerBound && primeList.get(i)<=upperBound)
+				{
+					primeCount++;
+				}
+			}
+
+			System.out.println(primeCount);
+
+
+
+		}
+
+    }
+}

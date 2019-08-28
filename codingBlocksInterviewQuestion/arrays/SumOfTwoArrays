@@ -1,0 +1,53 @@
+ARRAYS-SUM OF TWO ARRAYS
+Take as input N, the size of array. Take N more inputs and store that in an array. Take as input M, the size of second array and take M more inputs and store that in second array. Write a function that returns the sum of two arrays. Print the value returned.
+
+Input Format:
+Constraints:
+Length of Array should be between 1 and 1000.
+
+Output Format
+Sample Input
+4
+1 0 2 9
+5
+3 4 5 6 7
+Sample Output
+3, 5, 5, 9, 6, END
+
+import sys
+input_number = int(input())
+if input_number == 0 or input_number == 1:
+    print(1)
+    sys.exit()
+input_number_list_representation = list()
+input_number_list_representation.append(1)
+carry_bit = 0
+for i in range(1,input_number+1):
+    for j in range(0,len(input_number_list_representation)) :
+        mul_value = (input_number_list_representation[j]*i) +carry_bit
+        # print("current mul_value is",mul_value)
+        if mul_value < 10:
+            input_number_list_representation[j] = mul_value
+            carry_bit = 0
+            continue
+        carry_bit = mul_value // 10
+        input_number_list_representation[j] = mul_value % 10
+        
+        if j == len(input_number_list_representation)-1 and carry_bit >0:
+            while(carry_bit >0):
+                #     temp = [None]*(len(input_number_list_representation)+1)
+                # temp[0] = carry_bit%10
+                # next_temp_index = next_temp_index+1
+                input_number_list_representation.append(carry_bit%10)
+                carry_bit=carry_bit//10
+                
+            
+            # temp = [None]*(len(input_number_list_representation)+1)
+            # temp[0] = carry_bit%10
+            # next_temp_index = 1
+            # input_number_list_representation.append(carry_bit)
+            # carry_bit=0
+    # print("List for i ",i," ",input_number_list_representation)
+
+input_number_string_list_representation  = ("".join(map(str,input_number_list_representation)))
+print(input_number_string_list_representation[::-1])å

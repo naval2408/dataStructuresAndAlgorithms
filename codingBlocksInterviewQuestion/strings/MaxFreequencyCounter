@@ -1,0 +1,41 @@
+TRINGS-MAX FREQUENCY CHARACTER
+Take as input S, a string. Write a function that returns the character with maximum frequency. Print the value returned.
+
+Input Format:
+String
+
+Constraints:
+A string of length between 1 to 1000.
+
+Output Format
+Character
+
+Sample Input
+aaabacb
+Sample Output
+a
+
+
+
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        String inputString = scan.next();
+        int[] charCount = new int[256];
+        int maxFreequency = 0;
+        int maxAsciiValue = 0;
+        for(int i =0; i<inputString.length();i++)
+        {
+            int asciiValueOfCurrentChar = (int) inputString.charAt(i);
+            charCount[asciiValueOfCurrentChar] = charCount[asciiValueOfCurrentChar]+1;
+            if(charCount[asciiValueOfCurrentChar]>maxFreequency)
+            {
+                maxFreequency = charCount[asciiValueOfCurrentChar];
+                maxAsciiValue = asciiValueOfCurrentChar;
+            }
+        }
+    System.out.print((char)maxAsciiValue);
+        // Your Code Here
+    }
+}

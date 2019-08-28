@@ -1,0 +1,49 @@
+SSTRINGS-DIFFERENCE IN ASCII CODES
+Take as input S, a string. Write a program that inserts between each pair of characters the difference between their ascii codes and print the ans.
+
+Input Format:
+String
+
+Constraints:
+Length of String should be between 2 to 1000.
+
+Output Format
+String
+
+Sample Input
+acb
+Sample Output
+a2c-1b
+
+
+
+import java.util.*;
+import java.lang.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        String inputString = scan.next();
+        StringBuilder stringBuilder = new StringBuilder(inputString);
+        int previousAscii = (int) inputString.charAt(0);
+        int initialAppendPosition = 1;
+        for(int i = 1; i<inputString.length();i=i+1)
+        {
+            int currentAscii = (int) inputString.charAt(i);
+            String difference = Integer.toString(currentAscii-previousAscii);
+            stringBuilder.insert(initialAppendPosition,difference);
+            if(difference.length()>1)
+            {
+             initialAppendPosition =  initialAppendPosition+3;
+            }
+            else
+            {
+                initialAppendPosition =  initialAppendPosition+2;
+            }
+            previousAscii = currentAscii;
+
+
+        }
+        System.out.println(stringBuilder.toString());
+        // Your Code Here
+    }
+}

@@ -1,0 +1,26 @@
+LOWER UPPER
+Print "lowercase" if user enters a character between 'a-z' , Print "UPPERCASE" is character lies between 'A-Z' and print "Invalid" for all other characters like $,.^# etc.
+
+Input Format:
+Single Character .
+
+Constraints:
+-
+
+Output Format
+lowercase UPPERCASE Invalid
+
+Sample Input
+$
+Sample Output
+Invalid
+
+
+inputChar = input()
+ascii = ord(inputChar)
+if ascii in range(65,91):
+    print("UPPERCASE")
+elif ascii in range(97,123):
+    print("lowercase")
+else :
+    print("Invalid")

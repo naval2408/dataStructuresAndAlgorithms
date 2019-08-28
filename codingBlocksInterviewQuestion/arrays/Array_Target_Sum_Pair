@@ -1,0 +1,41 @@
+ARRAYS-TARGET SUM PAIRS
+Take as input N, the size of array. Take N more inputs and store that in an array. Take as input “target”, a number. Write a function which prints all pairs of numbers which sum to target.
+
+Input Format:
+The first line contains input N. Next N lines contains the elements of array and (N+1)th line contains target number.
+
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        int sizeOfArray = scan.nextInt();
+        int[] input = new int[sizeOfArray];
+        for(int i = 0; i<sizeOfArray;i++)
+        {
+            input[i] = scan.nextInt();
+        }
+        int target = scan.nextInt();
+        Arrays.sort(input);
+        int left = 0;
+        int right = sizeOfArray-1;
+        while(left<right)
+        {
+            int currentSum = 0;
+            currentSum = input[left] + input[right];
+            if(currentSum==target)
+            {
+                System.out.println(input[left]+" and "+input[right]);
+                left++;
+            }
+            else if(currentSum<target)
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+        }
+
+    }
+}

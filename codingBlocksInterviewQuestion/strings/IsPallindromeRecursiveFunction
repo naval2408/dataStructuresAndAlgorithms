@@ -1,0 +1,74 @@
+S PALINDROME?
+Take as input N, a number. Take N more inputs and store that in an array. Write a recursive function which tests if the array is a palindrome and returns a Boolean value. Print the value returned.
+
+Input Format:
+Enter a number N , add N more numbers
+
+Constraints:
+None
+
+Output Format
+Display the Boolean result
+
+Sample Input
+4
+1
+2
+2
+1
+Sample Output
+true
+
+
+
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+		Scanner scan = new Scanner(System.in);
+		int sizeOfArray = scan.nextInt();
+		int[] inputArray = new int[sizeOfArray];
+		for(int i =0; i< sizeOfArray;i++)
+		{
+			inputArray[i] = scan.nextInt();
+		}
+
+		System.out.println(isPalindrome(inputArray,0,sizeOfArray-1));
+        // Your Code Here
+    }
+
+	public static boolean isPalindrome(int[] input, int startIndex, int endIndex)
+	{
+		if(startIndex==endIndex)
+		{
+			return true;
+		}
+		if(endIndex-startIndex==1)
+		{
+			if(input[startIndex]==input[endIndex])
+			{
+				return true;
+			}
+
+			else
+			{
+				return false;
+			}
+		}
+		boolean prevResult = isPalindrome(input,startIndex+1,endIndex-1);
+		if (prevResult==false)
+		{
+			return false;
+		}
+		else
+		{
+			if(input[startIndex]==input[endIndex])
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+}

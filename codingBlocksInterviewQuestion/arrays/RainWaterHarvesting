@@ -1,0 +1,37 @@
+RAIN WATER HARVESTING
+Apoorvaa has created an elevated roof. She wants to know how much water can she save during rain.
+
+Given n non negative integers representing the elevation map where width of every bar is 1, Find the maximum water that she can save.
+
+Explanation for the Sample input Testcase:
+Elevation Map
+
+So the total units of water she can save is 5 units
+
+number_of_elements = int(input())
+elements = input()
+elementList = list(elements.split())
+elevation = [int (i) for i in elementList]
+leftMax = list()
+rightMax = list()
+#rightMax = [None] * (number_of_elements)
+currentMax = elevation[0]
+for i in range(len(elevation)):
+    if elevation[i] >= currentMax :
+        currentMax = elevation[i]
+    leftMax.append(currentMax)
+currentMax = elevation[number_of_elements-1]
+for i in range(number_of_elements-1,-1,-1):
+
+    if elevation[i] >= currentMax :
+        currentMax = elevation[i]
+    rightMax.append(currentMax)
+rightMax.reverse()
+
+total_water_conserved = 0
+
+for i in range (0,number_of_elements):
+    adjacentMin = min(rightMax[i],leftMax[i])
+    total_water_conserved = total_water_conserved+adjacentMin-elevation[i]
+print(total_water_conserved)
+Closeå

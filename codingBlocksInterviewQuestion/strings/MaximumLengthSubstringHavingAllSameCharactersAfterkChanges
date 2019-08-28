@@ -1,0 +1,64 @@
+Sanket has a string consisting of only 'a' and 'b' as the characters. Sanket describes perfectness of a string as the maximum length substring of equal characters. Sanket is given a number k which denotes the maximum number of characters he can change. Find the maximum perfectness he can generate by changing no more than k characters.
+
+Input Format:
+The first line contains an integer denoting the value of K. The next line contains a string having only ‘a’ and ‘b’ as the characters.
+
+Constraints:
+2 ≤ N ≤ 10^5
+
+Output Format
+A single integer denoting the maximum perfectness achievable.
+
+Sample Input
+2
+abba
+Sample Output
+4
+
+
+
+import java.util.*;
+import java.lang.Math;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        int k = scan.nextInt();
+        String inputString = scan.next();
+        int aLen = maxSubStringLength('a',inputString,k);
+        int bLen = maxSubStringLength('b',inputString,k);
+        int result = Math.max(aLen,bLen);
+        System.out.println(result);
+
+    }
+
+    public static int maxSubStringLength(char currentChar, String inputString, int editsAllowed)
+    {
+        int maxLength = 1;
+        int startIndex = 0;
+        int endIndex = 0;
+        int diffrenceEncountered = 0;
+        while(endIndex<inputString.length())
+        {
+            if(inputString.charAt(endIndex)!=currentChar)
+            {
+                diffrenceEncountered++;
+            }
+
+            while(diffrenceEncountered>editsAllowed)
+            {
+                if(inputString.charAt(startIndex)!=currentChar)
+                {
+                    diffrenceEncountered--;
+                }
+                startIndex++;
+
+            }
+            int currentLength = endIndex-startIndex+1;
+            maxLength = Math.max(maxLength, currentLength);
+            endIndex++;
+
+        }
+        return maxLength;
+
+    }
+}

@@ -1,0 +1,54 @@
+BROKEN CALCULATOR
+Andrew was attempting a mathematics test where he needed to solve problems with factorials. One such problem had an answer which equaled 100! ,He wondered what would this number look like. He tried to calculate 100! On his scientific calculator but failed to get a correct answer. Can you write a code to help Andrew calculate factorials of such large numbers?
+
+Input Format:
+a single lined integer N
+
+Constraints:
+1 < = N < = 500
+
+Output Format
+Print the factorial of N
+
+Sample Input
+5
+Sample Output
+120
+
+import sys
+input_number = int(input())
+if input_number == 0 or input_number == 1:
+    print(1)
+    sys.exit()
+input_number_list_representation = list()
+input_number_list_representation.append(1)
+carry_bit = 0
+for i in range(1,input_number+1):
+    for j in range(0,len(input_number_list_representation)) :
+        mul_value = (input_number_list_representation[j]*i) +carry_bit
+        # print("current mul_value is",mul_value)
+        if mul_value < 10:
+            input_number_list_representation[j] = mul_value
+            carry_bit = 0
+            continue
+        carry_bit = mul_value // 10
+        input_number_list_representation[j] = mul_value % 10
+        
+        if j == len(input_number_list_representation)-1 and carry_bit >0:
+            while(carry_bit >0):
+                #     temp = [None]*(len(input_number_list_representation)+1)
+                # temp[0] = carry_bit%10
+                # next_temp_index = next_temp_index+1
+                input_number_list_representation.append(carry_bit%10)
+                carry_bit=carry_bit//10
+                
+            
+            # temp = [None]*(len(input_number_list_representation)+1)
+            # temp[0] = carry_bit%10
+            # next_temp_index = 1
+            # input_number_list_representation.append(carry_bit)
+            # carry_bit=0
+    # print("List for i ",i," ",input_number_list_representation)
+
+input_number_string_list_representation  = ("".join(map(str,input_number_list_representation)))
+print(input_number_string_list_representation[::-1])
